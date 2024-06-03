@@ -1,0 +1,141 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+#controls {
+    margin-bottom: 20px;
+}
+
+#board {
+    display: grid;
+    grid-template-columns: repeat(8, 40px);
+    grid-template-rows: repeat(8, 40px);
+    gap: 2px;
+}
+
+.tile {
+    width: 40px;
+    height: 40px;
+    background-color: lightgrey;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    cursor: pointer;
+    caret-color: transparent;
+    border: 1px solid #999;
+    box-sizing: border-box;
+    text-align: center;
+    line-height: 1;
+    position: relative;
+}
+
+.player1 {
+    background-color: lightblue;
+}
+
+.player2 {
+    background-color: lightcoral;
+}
+
+.bullet {
+    position: relative;
+    width: 10px; /* Adjust bullet size as needed */
+    height: 10px; /* Adjust bullet size as needed */
+    background-color: black; /* Adjust bullet color as needed */
+    border-radius: 50%; /* Shape the bullet as a circle */
+    display:block; /* Hide the bullet initially */
+    z-index: 1; /* Ensure bullet is above the board */
+}
+.tile.valid-move {
+    background-color: green;
+}
+.tile.ricochet::before,
+.tile.semiricochet::before {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    transform-origin: center center;
+}
+
+.tile.ricochet::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 39px 39px 0;
+    border-color: transparent transparent blue transparent;
+    
+}
+.tile.ricochet.player2::before{
+    border-color: transparent transparent red transparent;
+}
+.tile.semiricochet::before {
+    content: '';
+    position: absolute;
+    top: 50%; /* Position at the middle of the tile */
+    left: 0; /* Align with the left edge of the tile */
+    width: 100%; /* Take up the full width of the tile */
+    height: 2px; /* Thickness of the line */
+    background-color: blue; /* Color of the line */
+}
+.tile.semiricochet::before {
+    transform: rotate(45deg); /* Rotate the line by 45 degrees */
+    width: 131%; /* Adjust the width to cover the diagonal */
+    left: -15%; /* Shift left to align with the top-left corner */
+    top: 50%; /* Shift top to align with the top-left corner */
+}
+    
+.tile.semiricochet.player2::before{
+    background-color:  red ;
+ } 
+ 
+
+ .rotate-0::before {
+    transform: rotate(0deg); /* Default diagonal line */
+}
+.rotate-45::before{
+    transform: rotate(45deg);
+}
+.rotate-90::before {
+    transform: rotate(90deg); /* Rotated 90 degrees */
+}
+
+.rotate-180::before {
+    transform: rotate(180deg); /* Rotated 180 degrees */
+}
+
+.rotate-270::before {
+    transform: rotate(270deg); /* Rotated 270 degrees */
+}
+#timer {
+    margin-top: 20px;
+    font-size: 20px;
+}
+
+@media (max-width: 600px) {
+    #board {
+        grid-template-columns: repeat(8, 30px);
+        grid-template-rows: repeat(8, 30px);
+    }
+
+    .tile {
+        width: 30px;
+        height: 30px;
+        font-size: 18px;
+    }
+
+    #timer {
+        font-size: 16px;
+    }
+}

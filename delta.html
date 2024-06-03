@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Board Game</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>8x8 Board Game</h1>
+    <div id="controls">
+        <button onclick="startGame()">Start Game</button>
+        <button onclick="pauseGame()">Pause</button>
+        <button onclick="resumeGame()">Resume</button>
+        <button onclick="resetGame()">Reset</button>
+    </div>
+    <div class="board" id="board"></div>
+    <div id="bullet"></div>
+    <div class="actions">
+        <button id="rotateLeft">Rotate Left</button>
+        <button id="rotateRight">Rotate Right</button>
+    </div>
+    
+    <div id="timer">Player 1 Time: <span id="player1-time">60</span>s | Player 2 Time: <span id="player2-time">60</span>s</div>
+    <div id="board"></div>
+    <script src="script2.js"></script>
+</body>
+</html>
